@@ -1,0 +1,27 @@
+<html>
+  <head>
+    {% if title %}
+    <title> {{ title }} </title>
+    {% else %}
+    <title> anything </title>
+    {% endif %}
+  </head>
+  <body>
+    <a href="{{  url_for('index') }}"> HomePage </a> &nbsp; &nbsp; 
+    <a href= "{{ url_for('login') }}"> login  </a>   &nbsp; &nbsp;
+    <a href="{{ url_for('logout') }}" > logout </a>   &nbsp; &nbsp;
+    <a href="{{ url_for('register') }}">register</a> &nbsp; &nbsp;
+    <a href="{{ url_for('mypage',username=current_user.username) }}"> mypage </a>
+    <br>
+    <br>
+
+    {% with messages= get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+      <b> {{ message }} </b> <br>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block content %} {% endblock %}
+  </body>
+</html>
